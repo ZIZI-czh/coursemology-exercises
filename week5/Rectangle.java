@@ -1,6 +1,6 @@
 package week5;
 
-public class Rectangle extends Shape {
+public class Rectangle extends Shape implements Printable {
     private int height;
     private int width;
 

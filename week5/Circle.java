@@ -1,6 +1,6 @@
 package week5;
 
-public class Circle extends Shape {
+public class Circle extends Shape implements Printable {
 
     private int radius;
 
