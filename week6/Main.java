@@ -1,58 +1,42 @@
 package week6;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
-import static jdk.nashorn.internal.objects.Global.print;
-
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
-   public  static ArrayList<Integer> items = new ArrayList<>();
+    private static HashMap<String, Integer> roster = new HashMap<>();
 
-    private static void addNumber(int i) {
-       // ArrayList<Integer> items = new ArrayList<>();
-      items.add(i);
-        /*for(int number : items){
-            System.out.print(i);
-
-        }*/
-       //print(items);
-        System.out.println(items);
+    private static void addToRoster(String day) {
+        if (roster.containsKey(day)){
+           // Integer newValue = Integer.valueOf(roster.get(day).intValue() + 1);
+            int newValue = roster.get(day).intValue() + 1;
+            roster.put(day, newValue);
+        } else {
+            roster.put(day, Integer.valueOf(1));
+        }
     }
 
-    private static void removeNumber(int i) {
+    private static void printRoster() {
 
-        items.remove((Integer) i);
-        System.out.println(items);
-
-    }
-
-    private static String getTotal() {
-
-        int totalSum = 0;
-        for(int number : items) {
-            totalSum += number;
+        for (Map.Entry<String, Integer> entry : roster.entrySet()) {
+            String k = entry.getKey();
+            Integer v = entry.getValue();
+            System.out.println( k + " => " + v);
         }
 
-        return Integer.toString(totalSum);
-
     }
-    private static boolean isFound(int i) {
 
-        if(items.contains(i)) {
-            return true;
-        }
-            return false;
-    }
 
     public static void main(String[] args) {
-        System.out.println("Adding numbers to the list");
-        addNumber(3);
-        addNumber(8);
-        addNumber(24);
-        System.out.println("The total is: " + getTotal());
-        System.out.println("8 in the list : " + isFound(8));
-        System.out.println("5 in the list : " + isFound(5));
-        removeNumber(8);
-        System.out.println("The total is: " + getTotal());
+        addToRoster("Monday"); // i.e., one person signed up for Monday
+        addToRoster("Wednesday"); // i.e., one person signed up for Wednesday
+        addToRoster("Wednesday"); // i.e., another person signed up for Wednesday
+        addToRoster("Friday");
+        addToRoster("Monday");
+        printRoster();
     }
+
+
 }
